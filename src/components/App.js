@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import { injectGlobal, ThemeProvider } from 'styled-components'
 import Helmet from 'react-helmet'
 
-import { HomePage } from 'components'
+import { HomePage, CartPage, WishlistPage } from 'components'
 
 // https://github.com/diegohaz/arc/wiki/Styling
 import theme from './themes/default'
@@ -22,15 +22,17 @@ const App = () => {
         <meta name="description" content="React starter kit based on Atomic Design with React Router v4, Webpack, Redux, Server Side Rendering and more." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:site_name" content="ARc" />
-        <meta property="og:image" content="https://arc.js.org/thumbnail.png" />
+        <meta property="og:image" content="../../public/thumbnail.png" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <link rel="icon" href="https://arc.js.org/icon.png" />
+        <link rel="icon" href="../../public/icon.png" />
       </Helmet>
       <ThemeProvider theme={theme}>
         <Switch>
           <Route path="/" component={HomePage} exact />
+          <Route path="/cart" component={CartPage} exact />
+          <Route path="/wishlist" component={WishlistPage} exact />
         </Switch>
       </ThemeProvider>
     </div>

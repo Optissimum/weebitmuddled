@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
 
-import { Feature, Button, Input, Badge } from 'components'
+import { Feature, Button, Input } from 'components'
 
 const Wrapper = styled.div`
   font-family: ${font('primary')};
@@ -12,15 +12,21 @@ const Wrapper = styled.div`
   display: flex;
   padding: 1rem;
   box-sizing: border-box;
+  border: 1px solid transparent;
 
   &:hover {
-    background-color: #fefefe;
+    border-color: ${palette('gum', 0)};
+    border-radius: 5px;
   }
+`
+
+const StyledFeature = styled(Feature)`
+  padding-bottom: 0;
 `
 
 const RightBar = styled.div`
   display: flex;
-  padding-bottom: 16px;
+  padding-bottom: 2rem;;
 `
 
 const BuyBlock = styled.div`
@@ -28,24 +34,24 @@ const BuyBlock = styled.div`
   bottom: 1rem;
 `
 
-const Product = (props) => {
+const Product = ({ title, image, link, tags, categories, quantityMax, children, addToCart, ...props }) => {
   return (
     <Wrapper {...props}>
-      <Feature
-        title={props.title}
-        img={props.image}
-        link={props.link}
-        tags={props.tags}
-        categories={props.categories}
+      <StyledFeature
+        title={title}
+        img={image}
+        to={link}
+        tags={tags}
+        categories={categories}
       >
-        {props.children}
-      </Feature>
+        {children}
+      </StyledFeature>
       <RightBar>
         <BuyBlock>
           <Input type="select" style={{ marginBottom: '1rem' }}>
-            {Array(10).map(() => <option>{arguments[1]}</option>)}
+            {Array(quantityMax).map(() => <option>{arguments[1]}</option>)}
           </Input>
-          <Button onClick={props.addToCart}>Add to Cart</Button>
+          <Button onClick={addToCart}>Add to Cart</Button>
         </BuyBlock>
       </RightBar>
     </Wrapper>
@@ -59,6 +65,7 @@ Product.propTypes = {
   link: PropTypes.string,
   string: PropTypes.link,
   categories: PropTypes.array,
+  quantityMax: PropTypes.number,
   tags: PropTypes.array,
   addToCart: PropTypes.func,
   children: PropTypes.string,

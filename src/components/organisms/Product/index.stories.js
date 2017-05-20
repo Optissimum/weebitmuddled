@@ -11,6 +11,7 @@ storiesOf('Product', module)
       addToCart={action('Item added')}
       tags={['Iron Bull', 'Dorian', 'Adoribull', 'Dragon Age']}
       categories={['Sticker']}
+      quantityMax={10}
     >
       Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
     </Product>
