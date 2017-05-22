@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 
-import { Product, Heading } from 'components'
-
-import { ProductImage } from '../../../../public/adoribull v2.png'
+import { Product, Spinner, Heading } from 'components'
 
 const Grid = styled.div`
   display: flex;
@@ -24,89 +22,33 @@ const StyledProduct = styled(Product)`
   margin: 1rem;
 `
 
-const ProductList = ({ tag, ...props }) => (
-  <div {...props}>
-    <StyledHeading>Holy Shit Product</StyledHeading>
-    <Grid>
-      <StyledProduct
-        title="Item Name"
-        image="http://localhost:3001/adoribull%20v2.png"
-        link="http://weebitmuddled.com/shop/adoribull-sticker-set/"
-        addToCart={null}
-        tags={['Iron Bull', 'Dorian', 'Adoribull', 'Dragon Age']}
-        categories={['Sticker']}
-        quantityMax={10}
-      >
-        Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
-      </StyledProduct>
-      <StyledProduct
-        title="Item Name"
-        image="http://localhost:3001/adoribull%20v2.png"
-        link="http://weebitmuddled.com/shop/adoribull-sticker-set/"
-        addToCart={null}
-        tags={['Iron Bull', 'Dorian', 'Adoribull', 'Dragon Age']}
-        categories={['Sticker', 'Poster', 'Butt', 'Print', 'Super Fancy Print']}
-        quantityMax={10}
-      >
-        Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
-      </StyledProduct>
-      <StyledProduct
-        title="Item Name"
-        image="http://localhost:3001/adoribull%20v2.png"
-        link="http://weebitmuddled.com/shop/adoribull-sticker-set/"
-        addToCart={null}
-        tags={['Iron Bull', 'Dorian', 'Adoribull', 'Dragon Age']}
-        categories={['Sticker']}
-        quantityMax={10}
-      >
-        Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
-      </StyledProduct>
-      <StyledProduct
-        title="Item Name"
-        image="http://localhost:3001/adoribull%20v2.png"
-        link="http://weebitmuddled.com/shop/adoribull-sticker-set/"
-        addToCart={null}
-        tags={['Iron Bull', 'Dorian', 'Adoribull', 'Dragon Age']}
-        categories={['Sticker']}
-        quantityMax={10}
-      >
-        Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
-      </StyledProduct>
-      <StyledProduct
-        title="Item Name"
-        image="http://localhost:3001/adoribull%20v2.png"
-        link="http://weebitmuddled.com/shop/adoribull-sticker-set/"
-        addToCart={null}
-        tags={['Iron Bull', 'Dorian', 'Adoribull', 'Dragon Age']}
-        categories={['Sticker']}
-        quantityMax={10}
-      >
-        Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
-      </StyledProduct>
-      <StyledProduct
-        title="Item Name"
-        image="http://localhost:3001/adoribull%20v2.png"
-        link="http://weebitmuddled.com/shop/adoribull-sticker-set/"
-        addToCart={null}
-        tags={['Iron Bull', 'Dorian', 'Adoribull', 'Dragon Age']}
-        categories={['Sticker']}
-        quantityMax={10}
-      >
-        Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
-      </StyledProduct>
-      <StyledProduct
-        title="Item Name"
-        image="http://localhost:3001/adoribull%20v2.png"
-        link="http://weebitmuddled.com/shop/adoribull-sticker-set/"
-        addToCart={null}
-        tags={['Iron Bull', 'Dorian', 'Adoribull', 'Dragon Age']}
-        categories={['Sticker']}
-        quantityMax={10}
-      >
-        Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
-      </StyledProduct>
-    </Grid>
+const ProductList = ({ tag, loading, products, ...props }) => (
+  <div>
+    { loading ? <Spinner /> : <div {...props}>
+      <StyledHeading>Holy Shit Product</StyledHeading>
+      <Grid>
+        {products.map(() => (<StyledProduct
+          title="Item Name"
+          image="http://localhost:3001/adoribull%20v2.png"
+          link="http://weebitmuddled.com/shop/adoribull-sticker-set/"
+          addToCart={null}
+          tags={['Iron Bull', 'Dorian', 'Adoribull', 'Dragon Age']}
+          categories={['Sticker', 'Poster', 'Laptop Skin']}
+          quantityMax={10}
+        >
+            Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
+          </StyledProduct>))}
+      </Grid>
+    </div>
+    }
   </div>
 )
+
+ProductList.propTypes = {
+  tag: PropTypes.string,
+  products: PropTypes.array,
+  loading: PropTypes.bool,
+
+}
 
 export default ProductList
