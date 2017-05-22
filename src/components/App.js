@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import { injectGlobal, ThemeProvider } from 'styled-components'
 import Helmet from 'react-helmet'
 
-import { HomePage, CartPage, WishlistPage } from 'components'
+import { HomePage, CartPage, ProductPage, WishlistPage } from 'components'
 
 // https://github.com/diegohaz/arc/wiki/Styling
 import theme from './themes/default'
@@ -32,6 +32,7 @@ const App = () => {
         <Switch>
           <Route path="/" component={HomePage} exact />
           <Route path="/cart" component={CartPage} exact />
+          <Route path="/shop" component={ProductPage} exact />
           <Route path="/wishlist" component={WishlistPage} exact />
         </Switch>
       </ThemeProvider>

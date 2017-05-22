@@ -21,17 +21,21 @@ const Wrapper = styled.div`
 `
 
 const StyledFeature = styled(Feature)`
+  display: flex;
+  flex: 4.5;
   padding-bottom: 0;
 `
 
 const RightBar = styled.div`
   display: flex;
-  padding-bottom: 2rem;;
+  flex: 1;
+  padding-bottom: 2rem;
 `
 
 const BuyBlock = styled.div`
   position: absolute;
-  bottom: 1rem;
+  bottom: 2rem;
+  margin-right: 2rem;
 `
 
 const Product = ({ title, image, link, tags, categories, quantityMax, children, addToCart, ...props }) => {
@@ -48,9 +52,10 @@ const Product = ({ title, image, link, tags, categories, quantityMax, children, 
       </StyledFeature>
       <RightBar>
         <BuyBlock>
-          <Input type="select" style={{ marginBottom: '1rem' }}>
-            {Array(quantityMax).map(() => <option>{arguments[1]}</option>)}
+          <Input type="select" style={{ marginBottom: '1rem', marginRight: '2rem' }} >
+            {categories.map((category) => <option value="{category}" >{category}</option>)}
           </Input>
+          <Input type="number" style={{ marginBottom: '1rem', marginRight: '2rem' }} />
           <Button onClick={addToCart}>Add to Cart</Button>
         </BuyBlock>
       </RightBar>

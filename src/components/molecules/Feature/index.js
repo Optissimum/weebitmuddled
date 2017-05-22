@@ -16,14 +16,17 @@ const Wrapper = styled.div`
   }
 `
 
-const StyledIcon = styled(Icon)`
+const StyledIcon = styled.img`
   flex: none;
+  height: 100%;
+  width: 33%;
   @media screen and (max-width: 640px) {
     width: 32px;
   }
 `
 
 const Text = styled.div`
+  width: 66%;
   margin-left: 1rem;
   overflow: auto;
   > :first-child {
@@ -51,10 +54,10 @@ const StyledBadge = styled(Badge)`
   }
 `
 
-const Feature = ({ icon, title, link, to, code, children, tags, categories, ...props }) => {
+const Feature = ({ img, title, link, to, code, children, tags, categories, ...props }) => {
   return (
     <Wrapper {...props}>
-      {icon && <StyledIcon icon={icon} width={64} />}
+      {img && <StyledIcon src={img} alt={title} width={64} />}
       <Text>
         <Heading level={2}>
           {link ? <Link href={link}>{title}</Link> : null}
@@ -77,7 +80,7 @@ const Feature = ({ icon, title, link, to, code, children, tags, categories, ...p
 
 Feature.propTypes = {
   title: PropTypes.string.isRequired,
-  icon: PropTypes.string,
+  img: PropTypes.string,
   link: PropTypes.string,
   to: PropTypes.string,
   tags: PropTypes.array,
