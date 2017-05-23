@@ -26,7 +26,7 @@ const App = () => {
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <link rel="icon" href="../../public/icon.png" />
+        <link rel="icon" href="http://localhost:3001/icon.png" />
       </Helmet>
       <ThemeProvider theme={theme}>
         <Switch>
