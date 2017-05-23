@@ -4,6 +4,8 @@ import styled, { css } from 'styled-components'
 import { font, palette } from 'styled-theme'
 import { ifProp } from 'styled-tools'
 
+import { Button } from 'components'
+
 const fontSize = ({ height }) => `${height / 35.5555555556}rem`
 
 const styles = css`
@@ -28,7 +30,44 @@ const styles = css`
     height: auto;
     margin: 0 0.2rem 0 0;
   }
+
+  &[type=number] {
+    flex: 2;
+    width: 2rem;
+    margin-right: 0;
+    border-radius: 0.125em 0px 0px 0.125em;
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      opacity: 0;
+    }
+  }
 `
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  height: 2.5em;
+  width: auto;
+
+  & > * {
+    margin: 0;
+    padding: 0;
+  }
+
+  & Button:first-child {
+    border-radius: 0px 0.125em 0px 0px;
+  }
+
+  & Button:last-child {
+    border-radius: 0px 0px 0.125em 0px;
+  }
+`
+
 
 const StyledTextarea = styled.textarea`${styles}`
 const StyledSelect = styled.select`${styles}`
@@ -37,6 +76,26 @@ const StyledInput = styled.input`${styles}`
 const Input = ({ ...props }) => {
   if (props.type === 'textarea') {
     return <StyledTextarea {...props} />
+  } else if (props.type === 'number') {
+    return (<Wrapper {...props}>
+      <StyledInput {...props} />
+      <ButtonWrapper >
+        <Button
+          value="1"
+          onClick={(e) => {
+            props.handleClick(e)
+            e.preventDefault()
+          }}
+        >+</Button>
+        <Button
+          value="-1"
+          onClick={(e) => {
+            props.handleClick(e)
+            e.preventDefault()
+          }}
+        >-</Button>
+      </ButtonWrapper>
+    </Wrapper>)
   } else if (props.type === 'select') {
     return <StyledSelect {...props} />
   }
@@ -48,6 +107,7 @@ Input.propTypes = {
   reverse: PropTypes.bool,
   height: PropTypes.number,
   invalid: PropTypes.bool,
+  handleClick: PropTypes.func,
 }
 
 Input.defaultProps = {
