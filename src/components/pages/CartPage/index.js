@@ -1,8 +1,12 @@
 import React from 'react'
+import { PageTemplate, Header, Footer, ProductList } from 'components'
 
 const CartPage = () => {
   return (
-    <div>Generic Page</div>
+    <PageTemplate header={<Header />} footer={<Footer />} >
+      <ProductList />
+    </PageTemplate>
+
   )
 }
 

@@ -1,5 +1,7 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import _ from 'lodash'
 
 import { Product, Spinner, Heading } from 'components'
 
@@ -25,19 +27,22 @@ const StyledProduct = styled(Product)`
 const ProductList = ({ tag, loading, products, ...props }) => (
   <div>
     { loading ? <Spinner /> : <div {...props}>
-      <StyledHeading>Holy Shit Product</StyledHeading>
+      <StyledHeading>Tag name will be here</StyledHeading>
       <Grid>
-        {products.map(() => (<StyledProduct
-          title="Item Name"
-          image="http://localhost:3001/adoribull%20v2.png"
-          link="http://weebitmuddled.com/shop/adoribull-sticker-set/"
-          addToCart={null}
-          tags={['Iron Bull', 'Dorian', 'Adoribull', 'Dragon Age']}
-          categories={['Sticker', 'Poster', 'Laptop Skin']}
-          quantityMax={10}
-        >
+        {products.map(() => (
+          <StyledProduct
+            title="Kadan et Amatus"
+            image="http://localhost:3001/adoribull%20v2.png"
+            link="http://weebitmuddled.com/shop/adoribull-sticker-set/"
+            addToCart={null}
+            tags={['Iron Bull', 'Dorian', 'Adoribull', 'Dragon Age']}
+            categories={['Sticker', 'Poster', 'Laptop Skin']}
+            quantityMax={10}
+            key={_.uniqueId()}
+          >
             Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
-          </StyledProduct>))}
+          </StyledProduct>
+        ))}
       </Grid>
     </div>
     }

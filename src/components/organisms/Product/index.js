@@ -2,8 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
+import { uniqueId } from 'lodash'
 
 import { Feature, Button, Input } from 'components'
+import { Input as Number } from 'containers'
 
 const Wrapper = styled.div`
   font-family: ${font('primary')};
@@ -22,20 +24,20 @@ const Wrapper = styled.div`
 
 const StyledFeature = styled(Feature)`
   display: flex;
-  flex: 4.5;
+  flex: 5;
   padding-bottom: 0;
 `
 
-const RightBar = styled.div`
+const BuyBar = styled.form`
   display: flex;
   flex: 1;
-  padding-bottom: 2rem;
-`
-
-const BuyBlock = styled.div`
-  position: absolute;
-  bottom: 2rem;
+  flex-direction: column;
+  justify-content: flex-end;
   margin-right: 2rem;
+
+  & > * {
+    margin-top: 1rem;
+  }
 `
 
 const Product = ({ title, image, link, tags, categories, quantityMax, children, addToCart, ...props }) => {
@@ -50,15 +52,13 @@ const Product = ({ title, image, link, tags, categories, quantityMax, children, 
       >
         {children}
       </StyledFeature>
-      <RightBar>
-        <BuyBlock>
-          <Input type="select" style={{ marginBottom: '1rem', marginRight: '2rem' }} >
-            {categories.map((category) => <option value="{category}" >{category}</option>)}
-          </Input>
-          <Input type="number" style={{ marginBottom: '1rem', marginRight: '2rem' }} />
-          <Button onClick={addToCart}>Add to Cart</Button>
-        </BuyBlock>
-      </RightBar>
+      <BuyBar>
+        <Input type="select" >
+          {categories.map(category => <option key={uniqueId()} value="{category}" >{category}</option>)}
+        </Input>
+        <Number type="number" />
+        <Button onClick={addToCart}>Add to Cart</Button>
+      </BuyBar>
     </Wrapper>
   )
 }
@@ -73,7 +73,10 @@ Product.propTypes = {
   quantityMax: PropTypes.number,
   tags: PropTypes.array,
   addToCart: PropTypes.func,
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.string,
+  ]),
 }
 
 export default Product

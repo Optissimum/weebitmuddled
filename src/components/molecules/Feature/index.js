@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { ifProp } from 'styled-tools'
+import { uniqueId } from 'lodash'
 
 import { Icon, Link, Paragraph, Heading, Badge, PreformattedText } from 'components'
 
@@ -67,10 +68,10 @@ const Feature = ({ img, title, link, to, code, children, tags, categories, ...pr
         {code && <PreformattedText block>{code}</PreformattedText>}
         <BadgeDiv>
           <TagWrapper>
-            {tags && tags.map(tag => <StyledBadge palette="gum">{tag}</StyledBadge>)}
+            {tags && tags.map(tag => <StyledBadge key={uniqueId()} palette="gum">{tag}</StyledBadge>)}
           </TagWrapper>
           <TagWrapper>
-            {categories && categories.map(category => <StyledBadge palette="primary">{category}</StyledBadge>)}
+            {categories && categories.map(category => <StyledBadge key={uniqueId()} palette="primary">{category}</StyledBadge>)}
           </TagWrapper>
         </BadgeDiv>
       </Text>
