@@ -1,4 +1,3 @@
-// https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import { PageTemplate, Header, Footer, Hero, FeatureList } from 'components'
 
