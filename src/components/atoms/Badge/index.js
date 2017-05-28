@@ -10,6 +10,7 @@ const Badge = styled.span`
   color: ${palette('grayscale', 0, true)};
   background-color: ${palette(1)};
   border-radius: 0.16667em;
+  height: 100%;
 `
 
 Badge.propTypes = {
