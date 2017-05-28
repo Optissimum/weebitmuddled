@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { ifProp } from 'styled-tools'
 import { uniqueId } from 'lodash'
 
-import { Icon, Link, Paragraph, Heading, Badge, PreformattedText } from 'components'
+import { Icon, Image, Link, Paragraph, Heading, Badge, PreformattedText } from 'components'
 
 const Wrapper = styled.div`
   position: relative;
@@ -17,7 +17,15 @@ const Wrapper = styled.div`
   }
 `
 
-const StyledIcon = styled.img`
+const StyledImage = styled(Image)`
+  cursor: ${ifProp('modalView', 'hand', 'pointer')};
+  flex: none;
+  @media screen and (max-width: 640px) {
+    width: 32px;
+  }
+`
+
+const StyledIcon = styled(Icon)`
   flex: none;
   height: 100%;
   width: 33%;
@@ -55,10 +63,11 @@ const StyledBadge = styled(Badge)`
   }
 `
 
-const Feature = ({ img, title, link, to, code, children, tags, categories, ...props }) => {
+const Feature = ({ img, icon, title, link, to, code, children, tags, categories, modalViewer, ...props }) => {
   return (
     <Wrapper {...props}>
-      {img && <StyledIcon src={img} alt={title} width={64} />}
+      {img && <StyledImage onClick={modalViewer} src={img} alt={title} width={400} />}
+      {icon && <StyledIcon src={icon} alt={title} width={64} />}
       <Text>
         <Heading level={2}>
           {link ? <Link href={link}>{title}</Link> : null}
@@ -82,11 +91,13 @@ const Feature = ({ img, title, link, to, code, children, tags, categories, ...pr
 Feature.propTypes = {
   title: PropTypes.string.isRequired,
   img: PropTypes.string,
+  icon: PropTypes.string,
   link: PropTypes.string,
   to: PropTypes.string,
   tags: PropTypes.array,
   categories: PropTypes.array,
   children: PropTypes.any,
+  modalViewer: PropTypes.func,
   code: PropTypes.node,
 }
 
