@@ -3,14 +3,15 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import _ from 'lodash'
 
-import { Product, Spinner, Heading } from 'components'
+import { Spinner, Heading, Product } from 'components'
+// import { Product } from 'containers'
 
 const Grid = styled.div`
   display: flex;
   flex-flow: row wrap;
   & > * {
-    width: calc(75% - 2rem);
-    @media screen and (max-width: 640px) {
+    width: calc(100% - 2rem);
+    @media screen and (max-width: 900px) {
       width: calc(100% - 1rem);
     }
   }
@@ -20,19 +21,15 @@ const StyledHeading = styled(Heading)`
   text-align: center;
 `
 
-const StyledProduct = styled(Product)`
-  margin: 1rem;
-`
-
 const ProductList = ({ tag, loading, products, ...props }) => (
   <div>
     { loading ? <Spinner /> : <div {...props}>
       <StyledHeading>Tag name will be here</StyledHeading>
       <Grid>
         {products.map(() => (
-          <StyledProduct
+          <Product
             title="Kadan et Amatus"
-            image="http://localhost:3001/adoribull%20v2.png"
+            image="http://localhost:3001/assets/adoribull.png"
             link="http://weebitmuddled.com/shop/adoribull-sticker-set/"
             addToCart={null}
             tags={['Iron Bull', 'Dorian', 'Adoribull', 'Dragon Age']}
@@ -41,7 +38,7 @@ const ProductList = ({ tag, loading, products, ...props }) => (
             key={_.uniqueId()}
           >
             Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
-          </StyledProduct>
+          </Product>
         ))}
       </Grid>
     </div>
