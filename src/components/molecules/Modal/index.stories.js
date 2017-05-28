@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Modal } from 'components'
+import { Modal, Image } from 'components'
 
 storiesOf('Modal', module)
   .add('default', () => (
@@ -21,5 +21,10 @@ storiesOf('Modal', module)
   .add('reverse', () => (
     <Modal onClose={action('closed')} reverse isOpen>
       Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
+    </Modal>
+  ))
+  .add('Image', () => (
+    <Modal onClose={action('closed')} reverse isOpen>
+      <Image src="https://i.imgur.com/t39INR3.jpg" width="100%" />
     </Modal>
   ))
