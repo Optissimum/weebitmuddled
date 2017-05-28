@@ -5,11 +5,8 @@ import { palette, size } from 'styled-theme'
 import {
   Block,
   Paragraph,
-  IconLink,
   IconButton,
   LogoImage,
-  PreformattedText,
-  Heading,
   Tooltip,
 } from 'components'
 
@@ -69,14 +66,6 @@ const ButtonGroup = styled.div`
   }
 `
 
-const Instructions = styled.div`
-  width: 100%;
-  margin-top: 2rem;
-  @media screen and (max-width: 640px) {
-    margin-top: 1rem;
-  }
-`
-
 const Hero = (props) => {
   return (
     <Wrapper opaque reverse {...props}>
@@ -85,7 +74,7 @@ const Hero = (props) => {
           <LogoImage height={265} />
           <ButtonGroup>
             <Tooltip reverse data-title="All the art I do" align="start" position="bottom">
-              <IconButton icon="tumblr" href="http://weebitmuddled.tumblr.com">Art Site</IconButton>
+              <IconButton icon="tumblr" href="http://moremuddled.tumblr.com">Art Site</IconButton>
             </Tooltip>
             <Tooltip reverse data-title="My personal blog" align="end" position="bottom">
               <IconButton icon="tumblr" href="http://weebitmuddled.tumblr.com">Tumblr</IconButton>
